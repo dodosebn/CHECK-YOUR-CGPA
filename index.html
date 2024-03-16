@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./Images/fav-icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>CGPA CHECK</title>
+</head>
+<body>
+    <header>
+        <h1>C.G.P.A Calculator</h1>
+    </header>
+    <div class="body-container">
+<div class="body-content">
+    <div class="form1">
+        <form action="#">
+<div class="allSelect">
+            <select name="Semester" id="semester">
+                <option value="Select" disabled selected>Select Semester</option>
+            </select>
+        </div>
+        <span id="smtEmpty" style="color:red;"></span>
+        <div class="allSelect Department">
+            <select name="Department" id="Department">
+                <option value="Select Your Department" disabled selected>Select Your Department</option>
+            </select>
+        </div>
+        <span id="dptEmpty" style="color:red;"></span>
+        <div class="courses">
+            <label for="courses">Input the number of courses, You offered</label>
+            <div class="allSelect numCourses">
+                <select name="numCourses" id="numCourses">
+                    <option value="Select Your Department" disabled selected>Select Your No. of courses</option>
+                </select>
+        </div>
+        <span id="numCEmpty" style="color:red;"></span>
+    </div>
+        <div class="see">
+            <input type="button" value="Next" id="nextStep1">
+        </div>
+        </form>
+   
+</div>
+    </div>
+</div>
+    <!-- ANOTHER SLIDE -->
+    <div class="Container">
+        <div class="content">
+            <div class="form2">
+            <form action="#">
+                <div class="guild">
+                    <h3>INPUT YOUR COURSES AND SELECT THEIR RESPECTIVE CREDIT UNIT</h3>
+                </div>
+                <div class="FORM-HOLD">
+                <div class="course-hold">
+                    <input type="text" name="input1" id="">
+                    <select name="Credit Unit" id="CreditUnit">
+                        <option value="Credit Unit" disabled selected>Credit Unit</option>
+                    </select>
+                </div>
+            </div>
+            <div class="see">
+                <input type="button" value="See your CGPA" id="nextStep2">
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- <script src="crache.js"></script> -->
+</body>
+</html>
