@@ -13,14 +13,14 @@ header{
     text-align: center;
 }
 
-.body-container, .Container{
+.body-container, .Container, .T-Container{
     background-color: #fff;
     height: 33em;
 }
-.Container{
+.Container, .T-Container{
     display: none;
 }
-.form1, .form2{
+.form1, .form2, .form3{
     display: flex;
     justify-content: center;
     align-content: center;
@@ -74,6 +74,23 @@ input[type="button"]{
 .course-hold{
     margin-top: 1em;
 }
+/* FORM3 */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
 @media (max-width: 385px){
     .body-container{
         height: 25em;
@@ -84,7 +101,7 @@ input[type="button"]{
         align-items: center;
     }
     .allSelect select{
-        width: 11.5em;
+        width: 11em;
         text-align: center;
         font-size: 1.5em;
     }
@@ -97,14 +114,19 @@ input[type="button"]{
         text-align: center;
     }
     /* SECOND FORM */
+    .course-hold{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
     .course-hold input[type="text"]{
-        width: 20em;
+        width: 8em;
     }
     .guild{
         text-align: center;
     }
     .Container{
-        height: 41em;
+        height: 33em;
     }
     .form2{
         padding: 2em;
