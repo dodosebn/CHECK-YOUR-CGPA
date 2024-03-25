@@ -1,13 +1,21 @@
+
 let selectSmt = document.getElementById("semester");
 let selectDpt = document.getElementById("Department");
-const FirstContainer = document.querySelector(".body-container");
 let NumberCourses = document.getElementById("numCourses");
+const FirstContainer = document.querySelector(".body-container");
 const EmptySmt = document.getElementById("smtEmpty");
+const fronterName = document.querySelector(".name");
+const fronterSkul = document.querySelector(".skul");
 const EmptyDpt = document.getElementById("dptEmpty");
 const numCEmpty = document.getElementById("numCEmpty");
 const Btn1 = document.getElementById("nextStep1");
 const SecondContainer = document.querySelector(".Container");
-const thirdContainer = document.querySelector(".T-Container");
+const thirdContainer = document.querySelector(".main-cont");
+const studentName = document.getElementById("cgName");
+const studentSchool = document.getElementById("cgSchool");
+const studentSemester = document.getElementById("cgSemester");
+const studentDepartment = document.getElementById("cgDepartment");
+const CGPAhimself = document.getElementById("CGPAhimself");
 
 const Semesters = ["First Semester", "Second Semester"];
 
@@ -16,6 +24,7 @@ const departments = [
   "Anatomy",
   "Banking & Finance",
   "Biology",
+  "BioChemistry",
   "Chemistry",
   "Criminology",
   "Electrical Engineering",
@@ -36,37 +45,34 @@ const departments = [
   "Sociology",
 ];
 
-const noOfCourses = ["6", "7", "8", "9", "10", "11", "12", "13"];
-Semesters.forEach((semester) => {
-  const option = document.createElement("option");
-  option.value = semester;
-  option.textContent = semester;
-  selectSmt.appendChild(option);
-});
+const noOfCourses = ["4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 
-departments.forEach((department) => {
-  const option = document.createElement("option");
-  option.value = department;
-  option.textContent = department;
-  selectDpt.appendChild(option);
-});
-noOfCourses.forEach((noOfCourse) => {
-  const option = document.createElement("option");
-  option.value = noOfCourse;
-  option.textContent = noOfCourse;
-  NumberCourses.append(option);
-});
+// Populate dropdowns
+function populateDropdown(select, options) {
+  for (let i = 0; i < options.length; i++) {
+    let option = document.createElement("option");
+    option.text = options[i];
+    select.add(option);
+  }
+}
 
+populateDropdown(selectSmt, Semesters);
+populateDropdown(selectDpt, departments);
+populateDropdown(NumberCourses, noOfCourses);
+
+// Event listeners for dropdowns
 selectSmt.addEventListener("change", function () {
-  const selectedSemester = selectSmt.value;
-
-  console.log("Selected department:", selectedSemester);
+  console.log(selectSmt.value);
 });
+
 selectDpt.addEventListener("change", function () {
-  const selectedDepartment = selectDpt.value;
-
-  console.log("Selected department:", selectedDepartment);
+  console.log(selectDpt.value);
 });
+
+NumberCourses.addEventListener("change", function () {
+  console.log(NumberCourses.value);
+});
+
 NumberCourses.addEventListener("change", function () {
   const selectedNumberOfCourses = NumberCourses.value;
   if (selectedNumberOfCourses >= 8) {
@@ -78,7 +84,7 @@ NumberCourses.addEventListener("change", function () {
 
   console.log("selected:", selectedNumberOfCourses);
 });
-
+// Form validation
 const formValidation = () => {
   if (selectSmt.selectedIndex === 0) {
     EmptySmt.textContent = "This field is required";
@@ -93,52 +99,55 @@ const formValidation = () => {
   } else {
     EmptyDpt.textContent = "";
   }
-
-  if (NumberCourses.selectedIndex === 0) {
-    numCEmpty.textContent = "This field is required";
+  if(fronterName.value.trim() === ""){
+    fronterName.style.border = "1px solid red";
     return false;
-  } else {
-    numCEmpty.textContent = "";
+  }else{
+    fronterName.style.border = "";
   }
-
+  if(fronterSkul.value.trim() === ""){
+    fronterSkul.placeholder = "This field is required";
+    fronterSkul.style.border = "1px solid red";
+    return false;
+  }else{
+    fronterSkul.style.border = "";
+  }
+  recreateForm();
+  FirstContainer.style.display = "none";
+  SecondContainer.style.display = "block";
   return true;
+  
 };
+
 
 Btn1.addEventListener("click", function () {
   formValidation();
-  Btn1.addEventListener("click", function () {
-    if (formValidation()) {
-      FirstContainer.style.display = "none";
-      SecondContainer.style.display = "block";
-      recreateForm();
-    }
-  });
+
 });
 
-// second form
+// Dynamically recreate the form based on the selected number of courses
 function recreateForm() {
-  const selectedNumberOfCourses = NumberCourses.value;
+  let numCourses = parseInt(NumberCourses.value);
   const formHold = document.querySelector(".FORM-HOLD");
-  formHold.innerHTML = "";
+  formHold.innerHTML = ""; // Clear previous form
 
-  for (let i = 0; i < selectedNumberOfCourses; i++) {
-    const div = document.createElement("div");
-    div.classList.add("course-hold");
+  let table = document.createElement("table");
+  table.classList.add("tabClass");
 
-    const inputField = document.createElement("input");
-    inputField.type = "text";
-    inputField.id = "inputa";
-    inputField.placeholder = "Course code";
-    inputField.name = "input" + (i + 1);
-    div.appendChild(inputField);
+  for (let i = 0; i < numCourses; i++) {
+    let row = document.createElement("tr");
 
-    const selectField = document.createElement("select");
-    selectField.name = "Credit Unit";
-    selectField.id = "select" + (i + 1);
-    div.appendChild(selectField);
+    let courseCodeCell = document.createElement("td");
+    let creditUnitCell = document.createElement("td");
+    let gradeCell = document.createElement("td");
 
-    const creditNum = ["C.U", "0", "1", "2", "3", "4", "5"];
-    creditNum.forEach((creditnum) => {
+    let courseCodeInput = document.createElement("input");
+    courseCodeInput.type = "text";
+    courseCodeInput.placeholder = "Course Code";
+    let creditUnitInput = document.createElement("select");
+
+    const CreditUni = ["C.U", "0", "1", "2", "3", "4", "5", "6"];
+    CreditUni.forEach((creditnum) => {
       const option = document.createElement("option");
       option.value = creditnum;
       option.textContent = creditnum;
@@ -146,97 +155,110 @@ function recreateForm() {
         option.selected = true;
         option.disabled = true;
       }
-      selectField.appendChild(option);
+      creditUnitInput.appendChild(option);
     });
+    let gradeInput = document.createElement("select");
+    gradeInput.classList.add("gradoo");
+    const gradeSelect = ["Grade", "A", "B", "C", "D", "E", "F"];
 
-    selectField.addEventListener("change", function () {
-      const Worddings = selectField.value;
-      console.log(Worddings);
-    });
-
-    const selectScore = document.createElement("select");
-    selectScore.name = "Score";
-    selectScore.id = "score" + (i + 1);
-    div.appendChild(selectScore);
-
-    const ScoreRate = ["select score", "Below 40 ", "From 40 to 49", "from 50 to 59", "from 60 to  69", "70 & Above"];
-    ScoreRate.forEach((scorela) => {
+    gradeSelect.forEach((Grade) => {
       const option = document.createElement("option");
-      option.value = scorela;
-      option.textContent = scorela;
-      if (ScoreRate === "select score") {
+      option.value = Grade;
+      option.textContent = Grade;
+      if (Grade === "Grade") {
         option.selected = true;
         option.disabled = true;
       }
-      selectScore.appendChild(option);
+      gradeInput.appendChild(option);
     });
+    courseCodeCell.appendChild(courseCodeInput);
+    creditUnitCell.appendChild(creditUnitInput);
+    gradeCell.appendChild(gradeInput);
 
-    selectScore.addEventListener("change", function () {
-      const Worddings = selectScore.value;
-      console.log(Worddings);
-    });
+    row.appendChild(courseCodeCell);
+    row.appendChild(creditUnitCell);
+    row.appendChild(gradeCell);
 
-    formHold.appendChild(div);
+    table.appendChild(row);
   }
+
+  formHold.appendChild(table);
 }
-const Button2 = document.getElementById("nextStep2");
-function validateInputs() {
-  const inputFields = document.querySelectorAll(".course-hold input");
-  const selectFields = document.querySelectorAll(".course-hold select");
-  inputFields.forEach((input) => {
-    if (input.value.trim() === "") {
-      input.style.border = "1px solid red";
-      input.placeholder = "Course code!!";
-      input.style.color = "red";
-      return false;
-    } else {
-      input.style.border = "";
-      input.style.color = "";
-      input.placeholder = "";
+function calculateCGPA() {
+  function getGradeValue(grade) {
+    switch (grade) {
+      case "A":
+        return 5;
+      case "B":
+        return 4;
+      case "C":
+        return 3;
+      case "D":
+        return 2;
+      case "E":
+        return 1;
+      case "F":
+        return 0;
+      default:
+        return 0;
     }
-    return true;
-  });
-  selectFields.forEach((select) => {
-    if (select.selectedIndex === 0) {
-      select.style.color = "red";
-      return false;
-    } else {
-      select.style.color = "";
-    }
-    return true;
-  });
+  }
+
+  const tabClass = document.querySelector(".tabClass");
+  const allSele = document.querySelector(".tabClass select");
+  const Input = document.querySelector(".tabClass input");
+  const gradoo = document.querySelector(".gradoo");
+  const error = document.querySelector(".guild p");
+
+  if (Input.value.trim() === "") {
+    Input.style.border = "1px solid red";
+    return false;
+  } else {
+    Input.style.border = "";
+  }
+
+  if (allSele.selectedIndex === 0 ||gradoo.selectedIndex === 0){
+    error.textContent = "input all Fields";
+    return false;
+  } else{
+    error.textContent = " ";
+  }
+
+
+  const formHold = document.querySelector(".FORM-HOLD");
+  let rows = formHold.getElementsByTagName("tr");
+  let totalCreditUnits = 0;
+  let totalWeightedGrades = 0;
+
+  for (let i = 0; i < rows.length; i++) {
+    let creditUnitCell = rows[i].getElementsByTagName("td")[1];
+    let creditUnitInput = creditUnitCell.querySelector("select");
+
+    let gradeCell = rows[i].getElementsByTagName("td")[2];
+    let gradeInput = gradeCell.querySelector("select");
+
+    let creditUnit = parseInt(creditUnitInput.value);
+    let grade = gradeInput.value;
+    let gradeValue = getGradeValue(grade);
+
+    let weightedGrade = creditUnit * gradeValue;
+    totalWeightedGrades += weightedGrade;
+    totalCreditUnits += creditUnit;
+  }
+
+  let cgpa = totalWeightedGrades / totalCreditUnits;
+  // console.log("CGPA:", cgpa);
+  SecondContainer.style.display = "none"
+  studentSemester.textContent =`Semester: ${selectSmt.value}`;
+  studentDepartment.textContent = `Department: ${selectDpt.value}`;
+  studentSchool.textContent = `School: ${fronterSkul.value}`;
+  studentName.textContent = `Name: ${fronterName.value}`;
+  CGPAhimself.textContent = `CGPA: ${cgpa}`;
+  thirdContainer.style.display = "block";
+  return true;
 }
 
-// function RecursionHard() {
-//   const selectedNumberOfCourses = NumberCourses.value;
-//   const FORM3 = document.querySelector(".form3");
-//   FORM3.innerHTML = "";
 
-// }
-  Button2.addEventListener("click", function () {
-      SecondContainer.style.display = "none";
-      thirdContainer.style.display = "block";
-      // RecursionHard();
-  });
-
-  // function calculateGrade(score) {
-  //   if (score < 40) {
-  //     return "Fail";
-  //   } else if (score >= 40 && score <= 49) {
-  //     return "Pass";
-  //   } else if (score >= 50 && score <= 59) {
-  //     return "C";
-  //   } else if (score >= 60 && score <= 69) {
-  //     return "B";
-  //   } else if (score >= 70) {
-  //     return "Excellent";
-  //   } else {
-  //     return "Invalid score";
-  //   }
-  // }
-  
-  // // Example usage
-  // const score = 75;
-  // const grade = calculateGrade(score);
-  // console.log(`Score: ${score}, Grade: ${grade}`);
-
+nextStep2.addEventListener("click", () => {
+  calculateCGPA();
+});

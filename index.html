@@ -34,34 +34,31 @@
                     <option value="Select Your Department" disabled selected>Select Your No. of courses</option>
                 </select>
         </div>
+        <div class="form-group">
+            <input type="text" name="fullName" id="fullName" class="fronter name" placeholder="Input Your FullName">
+        </div>
+        <div class="form-group">
+ <input type="text" name="School" id="School" class="fronter skul" placeholder="Input Your School">
+        </div>
         <span id="numCEmpty" style="color:red;"></span>
     </div>
         <div class="see">
             <input type="button" value="Next" id="nextStep1">
         </div>
         </form>
-   
 </div>
     </div>
 </div>
     <!-- SECOND SLIDE -->
-    <div class="Container">
+    <div class="Container" style="display: none;">
         <div class="content">
             <div class="form2">
             <form action="#">
                 <div class="guild">
-                    <h3>INPUT YOUR COURSES AND SELECT THEIR RESPECTIVE CREDIT UNIT</h3>
+         <h3>INPUT YOUR COURSES AND SELECT THEIR RESPECTIVE CREDIT UNIT</h3>
+                    <p></p>
                 </div>
                 <div class="FORM-HOLD">
-                <!-- <div class="course-hold">
-                    <input type="text" name="input1" id="">
-                <select name="Score" id="score">
-                    <option value="score" disabled selected>Score</option>
-                </select>
-                    <select name="Credit Unit" id="CreditUnit">
-                        <option value="Credit Unit" disabled selected>Credit Unit</option>
-                    </select>
-                </div> -->
             </div>
             <div class="see">
                 <input type="button" value="See your CGPA" id="nextStep2">
@@ -70,53 +67,30 @@
         </div>
         </div>
     </div>
-
- <!-- THIRD SIDE -->
- <div class="T-Container">
-    <div class="T-content">
+    <div class="main-cont">
+       <div class="main-content">
         <div class="form3">
-            <table>
-                <tr>
-                  <th>Course Code</th>
-                  <th>Course Unit</th>
-                  <th>Grade</th>
-                </tr>
-                <tr>
-                  <td>Alfreds Futterkiste</td>
-                  <td>Maria Anders</td>
-                  <td>Germany</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-                <tr>
-                  <td>Ernst Handel</td>
-                  <td>Roland Mendel</td>
-                  <td>Austria</td>
-                </tr>
-                <tr>
-                  <td>Island Trading</td>
-                  <td>Helen Bennett</td>
-                  <td>UK</td>
-                </tr>
-                <tr>
-                  <td>Laughing Bacchus Winecellars</td>
-                  <td>Yoshi Tannamuri</td>
-                  <td>Canada</td>
-                </tr>
-                <tr>
-                  <td>Magazzini Alimentari Riuniti</td>
-                  <td>Giovanni Rovelli</td>
-                  <td>Italy</td>
-                </tr>
-              </table>
-              
+          <form action="">
+            <div>
+            <label for="name" id="cgName"></label>
         </div>
+        <div>
+            <label for="school" id="cgSchool"></label>
+        </div>
+        <div>
+            <label for="semester" id="cgSemester"></label>
+        </div>
+        <div>
+            <label for="department" id="cgDepartment"></label>
+        </div>
+        <div>
+            <label for="cgpa" id="CGPAhimself">CGPA: 3</label>
+        </div>
+          </form>
+            </div>
+        </div>
+       </div>
     </div>
-</div>
     <script src="script.js"></script>
-    <!-- <script src="crache.js"></script> -->
 </body>
 </html>
