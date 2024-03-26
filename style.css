@@ -118,29 +118,29 @@ table {
   .inputError{
     border: 1px solid red;
 }
-@media (max-width: 385px){ 
+@media (max-width: 391px){ 
     input[type="text"],
     input[type="email"],
     input[type="password"],
      button {
-    width: 90%;
+    width: 100%;
     }
-    .form3{
+    /* .form3{
         text-align: left;
         padding-right: 30em;
-    }
+    } */
     .form3 form div label{
         font-size: 16px;
     }
 #nextPage {
   margin-left: 1em;
 }
-form {
+/* form {
     width: 300px;
     margin: 0;
     padding-left: 1em;
     
-    }
+    } */
     .body-container{
         height: 25em;
     }
@@ -149,7 +149,7 @@ form {
         justify-content: center;
         align-items: center;
     }
-    .allSelect select, .fronter{
+    .allSelect select{
         width: 11em;
         text-align: center;
         font-size: 1.5em;

@@ -99,6 +99,12 @@ const formValidation = () => {
   } else {
     EmptyDpt.textContent = "";
   }
+  if(NumberCourses.selectedIndex === 0) {
+    EmptyDpt.textContent = "This field is required";
+    return false;
+  }else{
+    EmptyDpt.textContent = "";
+  }
   if(fronterName.value.trim() === ""){
     fronterName.style.border = "1px solid red";
     return false;
